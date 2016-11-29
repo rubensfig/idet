@@ -1,0 +1,4 @@
+This is a packet sniffer.
+Arguments:
+  -p <number of packets> - Capture the number of packets and save them to the cap.txt file
+  -a - analyse the file
