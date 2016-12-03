@@ -7,7 +7,7 @@ import argparse
 def initialPrint():
     os.system("toilet -f mono12  idet")
 
-def writeToFile(timestamp, ipsrc, len):
+def writeToFile(timestamp, ipsrc, len, layer):
     f = ""
     try:
         f = open('cap.txt', 'a')
@@ -15,7 +15,7 @@ def writeToFile(timestamp, ipsrc, len):
         print "Unexpected error:", sys.exc_info()[0]
         raise
 
-    string = "# %s: %s, %s\n" % (timestamp, ipsrc, len)
+    string = "# %s: %s, %s -> %s\n" % (timestamp, ipsrc, len, layer)
     f.write(string)
     f.close()
 
@@ -27,7 +27,7 @@ def theCap(count):
     ret = oj.prints(count)
     #writeToFile("12", "127.0.0.1", "10")
     for pkt in ret:
-        writeToFile(pkt.sniff_timestamp, pkt.ip.src, pkt.length)
+        writeToFile(pkt.sniff_timestamp, pkt.ip.src, pkt.length, pkt.highest_layer)
 
 def defParser():
     blalal = 0
